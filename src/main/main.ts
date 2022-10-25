@@ -23,6 +23,8 @@ class AppUpdater {
   }
 }
 
+let counter = 0;
+
 let mainWindow: BrowserWindow | null = null;
 
 ipcMain.on('ipc-example', async (event, arg) => {
@@ -50,6 +52,11 @@ ipcMain.handle('ipc-invoke-test', (_event, arg) => {
   console.log('No Invoke Test');
   s = 'No Invoke Test';
   return s;
+});
+
+ipcMain.handle('ipc-increment-counter', () => {
+  counter += 1;
+  return counter;
 });
 
 if (process.env.NODE_ENV === 'production') {

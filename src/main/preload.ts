@@ -26,4 +26,7 @@ contextBridge.exposeInMainWorld('electron', {
   invokeTest: async () => {
     return ipcRenderer.invoke('ipc-invoke-test');
   },
+  incrementTest: () => {
+    return ipcRenderer.invoke('ipc-increment-counter');
+  },
 });

@@ -6,6 +6,7 @@ import './App.css';
 
 const Hello = () => {
   const [Test, setTest] = useState('');
+  const [Counter, setCounter] = useState(0);
 
   const invokeTest = async () => {
     const s: string = await window.electron.invokeTest();
@@ -17,6 +18,10 @@ const Hello = () => {
   const doTest = async () => {
     window.electron.printTest();
     setTest('It sent!');
+  };
+
+  const getCounter = async () => {
+    setCounter(await window.electron.incrementTest());
   };
 
   return (
@@ -34,9 +39,10 @@ const Hello = () => {
         Test
       </h2>
       <h2 className="font-italic text-center">{Test}</h2>
-      <div className="Hello space-x-2">
+      <h2 className="text-center">Counter: {Counter}</h2>
+      <div className="space-x-2 mt-2">
         <button
-          className="bg-black shadow-2xl"
+          className="bg-black shadow-2xl mb-2"
           type="button"
           onClick={invokeTest}
         >
@@ -50,6 +56,15 @@ const Hello = () => {
             📚
           </span>
           Run a different Test!
+        </button>
+      </div>
+      <div className="space-x-2 mt-2 align-middle justify-center flex">
+        <button
+          className="bg-black shadow-2xl"
+          type="button"
+          onClick={getCounter}
+        >
+          Counter Test
         </button>
       </div>
     </div>

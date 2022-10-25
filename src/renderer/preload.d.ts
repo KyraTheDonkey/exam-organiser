@@ -13,6 +13,7 @@ declare global {
       };
       printTest: () => void;
       invokeTest: () => Promise<string>;
+      incrementTest: () => Promise<number>;
     };
   }
 }
