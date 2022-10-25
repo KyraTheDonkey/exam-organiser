@@ -31,6 +31,27 @@ ipcMain.on('ipc-example', async (event, arg) => {
   event.reply('ipc-example', msgTemplate('pong'));
 });
 
+ipcMain.on('ipc-test', async (event, arg) => {
+  if (arg === 'Test') {
+    console.log('Test');
+    event.reply('ipc-test', 'Test received');
+  } else {
+    console.log('No Test');
+    event.reply('ipc-test', 'Test not received');
+  }
+});
+
+ipcMain.handle('ipc-invoke-test', (_event, arg) => {
+  let s: string;
+  if (arg === 'Test') {
+    console.log('Invoke Test');
+    s = 'Test';
+  }
+  console.log('No Invoke Test');
+  s = 'No Invoke Test';
+  return s;
+});
+
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();

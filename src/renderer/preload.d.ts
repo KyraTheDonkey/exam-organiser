@@ -11,6 +11,8 @@ declare global {
         ): (() => void) | undefined;
         once(channel: Channels, func: (...args: unknown[]) => void): void;
       };
+      printTest: () => void;
+      invokeTest: () => Promise<string>;
     };
   }
 }

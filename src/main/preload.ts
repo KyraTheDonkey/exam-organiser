@@ -20,4 +20,10 @@ contextBridge.exposeInMainWorld('electron', {
       ipcRenderer.once(channel, (_event, ...args) => func(...args));
     },
   },
+  printTest: () => {
+    ipcRenderer.send('ipc-test');
+  },
+  invokeTest: async () => {
+    return ipcRenderer.invoke('ipc-invoke-test');
+  },
 });
